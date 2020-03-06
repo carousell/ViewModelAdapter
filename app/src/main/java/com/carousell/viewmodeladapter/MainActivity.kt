@@ -6,23 +6,21 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.carousell.viewmodeladapter.base.Item
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    private val adapter =
-        MainAdapter(this)
+
+    private val adapter = MainAdapter(this, this)
+
     private val list by lazy {
-        List(5) { i -> "Num: $i" }
-            .mapIndexed { index, string ->
-                if (index % 2 == 0) {
-                    ViewModelProvider(this, TextViewModel.Factory(string))
-                        .get(string, TextViewModel::class.java)
-                } else {
-                    ViewModelProvider(this, EditViewModel.Factory(string))
-                        .get(string, EditViewModel::class.java)
-                }
+        IntRange(0, 4).map { index ->
+            if (index % 2 == 0) {
+                Item.Text("Item $index")
+            } else {
+                Item.Edit("Item $index")
             }
-            .toMutableList()
+        }.toMutableList()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,10 +39,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.add) {
-            list.add(
-                2, ViewModelProvider(this, TextViewModel.Factory("add new"))
-                    .get("add new", TextViewModel::class.java)
-            )
+            list.add(2, Item.Text("add new"))
             adapter.setData(list)
             return true
         }
