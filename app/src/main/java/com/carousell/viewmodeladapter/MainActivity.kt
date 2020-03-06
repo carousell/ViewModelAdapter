@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.carousell.viewmodeladapter.base.Item
 import kotlinx.android.synthetic.main.activity_main.*
@@ -13,15 +12,13 @@ class MainActivity : AppCompatActivity() {
 
     private val adapter = MainAdapter(this, this)
 
-    private val list by lazy {
-        IntRange(0, 4).map { index ->
-            if (index % 2 == 0) {
-                Item.Text("Item $index")
-            } else {
-                Item.Edit("Item $index")
-            }
-        }.toMutableList()
-    }
+    private val list = IntRange(0, 4).map { index ->
+        if (index % 2 == 0) {
+            Item.Text("Item $index")
+        } else {
+            Item.Edit("Item $index")
+        }
+    }.toMutableList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
