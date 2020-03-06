@@ -9,6 +9,10 @@ abstract class ViewModelAdapter<T : Item>(
     private val viewModelStoreOwner: ViewModelStoreOwner
 ) : RecyclerView.Adapter<ViewModelHolder<ViewModel>>() {
 
+    init {
+        setHasStableIds(true)
+    }
+
     private val viewModelProviders = mutableMapOf<Long, ViewModelProvider>()
 
     protected val data = mutableListOf<T>()
