@@ -18,18 +18,33 @@ abstract class ViewModelAdapter<T : Item>(
     override fun getItemId(position: Int) = data[position].id
 
     override fun onBindViewHolder(holder: ViewModelHolder<ViewModel>, position: Int) {
-        val itemId = getItemId(position)
-        val viewType = getItemViewType(position)
-        val viewModelClass = getViewModelClass(viewType)
-        val viewModelTag = "${viewModelClass.simpleName}-$itemId"
-        val viewModel = getViewModelProvider(itemId, position).get(viewModelTag, viewModelClass)
-        holder.bind(viewModel)
+        holder.bind(getViewModel(position))
+    }
+
+    override fun onViewRecycled(holder: ViewModelHolder<ViewModel>) {
+        holder.unbind()
     }
 
     fun setData(data: List<T>) {
         this.data.clear()
         this.data.addAll(data)
+        createViewModelProviders()
         notifyDataSetChanged()
+    }
+
+    private fun createViewModelProviders() {
+        viewModelProviders.clear()
+        data.forEachIndexed { position, _ ->
+            getViewModel(position)
+        }
+    }
+
+    private fun getViewModel(position: Int): ViewModel {
+        val itemId = getItemId(position)
+        val viewType = getItemViewType(position)
+        val viewModelClass = getViewModelClass(viewType)
+        val viewModelTag = "${viewModelClass.simpleName}-$itemId"
+        return getViewModelProvider(itemId, position).get(viewModelTag, viewModelClass)
     }
 
     private fun getViewModelProvider(itemId: Long, position: Int) =

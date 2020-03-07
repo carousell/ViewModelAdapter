@@ -9,11 +9,15 @@ abstract class ViewModelHolder<T : ViewModel>(itemView: View) :
     var viewModel: T? = null
 
     fun bind(viewModel: T) {
+        unbind()
+        this.viewModel = viewModel
+        onBind(viewModel)
+    }
+
+    fun unbind() {
         this.viewModel?.let {
             onUnbind(it)
         }
-        this.viewModel = viewModel
-        onBind(viewModel)
     }
 
     abstract fun onBind(viewModel: T)
