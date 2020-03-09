@@ -29,16 +29,16 @@ class MainAdapter(
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): ViewModelHolder<ViewModel> {
+    ): ViewModelHolder<out ViewModel> {
         val layoutInflater = LayoutInflater.from(parent.context)
         return when (viewType) {
             TYPE_TEXT -> TextHolder(
                 layoutInflater.inflate(R.layout.adapter_text, parent, false),
                 lifecycleOwner
-            ) as ViewModelHolder<ViewModel>
+            )
             TYPE_EDIT -> EditHolder(
                 layoutInflater.inflate(R.layout.adapter_edit, parent, false)
-            ) as ViewModelHolder<ViewModel>
+            )
             else -> throw RuntimeException("Not support")
         }
     }

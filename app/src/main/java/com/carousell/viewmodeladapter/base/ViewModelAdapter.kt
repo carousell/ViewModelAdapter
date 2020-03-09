@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 abstract class ViewModelAdapter<T : Item>(
     private val viewModelStoreOwner: ViewModelStoreOwner
-) : RecyclerView.Adapter<ViewModelHolder<ViewModel>>() {
+) : RecyclerView.Adapter<ViewModelHolder<out ViewModel>>() {
 
     private val viewModels = mutableMapOf<Long, ViewModel>()
 
@@ -17,11 +17,11 @@ abstract class ViewModelAdapter<T : Item>(
 
     override fun getItemId(position: Int) = data[position].id
 
-    override fun onBindViewHolder(holder: ViewModelHolder<ViewModel>, position: Int) {
+    override fun onBindViewHolder(holder: ViewModelHolder<out ViewModel>, position: Int) {
         viewModels[getItemId(position)]?.let { holder.bind(it) }
     }
 
-    override fun onViewRecycled(holder: ViewModelHolder<ViewModel>) {
+    override fun onViewRecycled(holder: ViewModelHolder<out ViewModel>) {
         holder.unbind()
     }
 
