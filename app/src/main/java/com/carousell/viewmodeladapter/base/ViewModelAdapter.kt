@@ -17,7 +17,7 @@ abstract class ViewModelAdapter<T : Item>(
     override fun getItemCount() = data.size
 
     override fun getItemId(position: Int) = data[position].id
-    
+
     abstract fun genViewHolder(
         parent: ViewGroup,
         viewType: Int
