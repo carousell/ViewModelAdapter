@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
 
     private val adapter = MainAdapter(this, this)
 
-    private val list = IntRange(0, 4).map { index ->
+    private val list = IntRange(0, 10000).map { index ->
         if (index % 2 == 0) {
             Item.Text("Item $index")
         } else {
