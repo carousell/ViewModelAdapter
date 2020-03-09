@@ -9,7 +9,7 @@ abstract class ViewModelAdapter<T : Item>(
     private val viewModelStoreOwner: ViewModelStoreOwner
 ) : RecyclerView.Adapter<ViewModelHolder<ViewModel>>() {
 
-    private val viewModelProviders = mutableMapOf<Long, ViewModelProvider>()
+    private val viewModels = mutableMapOf<Long, ViewModel>()
 
     protected val data = mutableListOf<T>()
 
@@ -18,7 +18,7 @@ abstract class ViewModelAdapter<T : Item>(
     override fun getItemId(position: Int) = data[position].id
 
     override fun onBindViewHolder(holder: ViewModelHolder<ViewModel>, position: Int) {
-        holder.bind(getViewModel(position))
+        viewModels[getItemId(position)]?.let { holder.bind(it) }
     }
 
     override fun onViewRecycled(holder: ViewModelHolder<ViewModel>) {
@@ -28,35 +28,34 @@ abstract class ViewModelAdapter<T : Item>(
     fun setData(data: List<T>) {
         this.data.clear()
         this.data.addAll(data)
-        createViewModelProviders()
+        createViewModels()
         notifyDataSetChanged()
     }
 
-    private fun createViewModelProviders() {
-        viewModelProviders.clear()
+    private fun createViewModels() {
+        viewModels.clear()
+        // Initialize ViewModel for each item
         data.forEachIndexed { position, _ ->
-            getViewModel(position)
+            initViewModel(position)
         }
     }
 
-    private fun getViewModel(position: Int): ViewModel {
+    private fun initViewModel(position: Int) {
         val itemId = getItemId(position)
         val viewType = getItemViewType(position)
         val viewModelClass = getViewModelClass(viewType)
         val viewModelTag = "${viewModelClass.simpleName}-$itemId"
-        return getViewModelProvider(itemId, position).get(viewModelTag, viewModelClass)
+        getViewModelProvider(position).get(viewModelTag, viewModelClass)
+            .also {
+                viewModels[itemId] = it
+            }
     }
 
-    private fun getViewModelProvider(itemId: Long, position: Int) =
-        viewModelProviders[itemId] ?: onCreateViewModelProvider(
-            getItemViewType(position),
-            data[position]
-        ).also {
-            viewModelProviders[itemId] = it
-        }
-
-    private fun onCreateViewModelProvider(viewType: Int, item: T) =
-        ViewModelProvider(viewModelStoreOwner, getViewModelProviderFactory(viewType, item))
+    private fun getViewModelProvider(position: Int) =
+        ViewModelProvider(
+            viewModelStoreOwner,
+            getViewModelProviderFactory(getItemViewType(position), data[position])
+        )
 
     abstract fun getViewModelClass(viewType: Int): Class<out ViewModel>
 
