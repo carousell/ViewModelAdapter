@@ -1,5 +1,6 @@
 package com.carousell.viewmodeladapter.base
 
+import android.view.ViewGroup
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
@@ -16,6 +17,19 @@ abstract class ViewModelAdapter<T : Item>(
     override fun getItemCount() = data.size
 
     override fun getItemId(position: Int) = data[position].id
+
+
+    abstract fun genViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): ViewModelHolder<*>
+
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): ViewModelHolder<ViewModel> {
+        return genViewHolder(parent, viewType) as ViewModelHolder<ViewModel>
+    }
 
     override fun onBindViewHolder(holder: ViewModelHolder<ViewModel>, position: Int) {
         val itemId = getItemId(position)
