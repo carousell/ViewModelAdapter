@@ -6,9 +6,15 @@ import androidx.recyclerview.widget.RecyclerView
 
 abstract class ViewModelHolder<T : ViewModel>(itemView: View) :
     RecyclerView.ViewHolder(itemView) {
+
     var viewModel: T? = null
 
-    fun bind(viewModel: T) {
+    @Suppress("UNCHECKED_CAST")
+    fun bind(viewModel: ViewModel) {
+        (viewModel as? T)?.let { bindInternal(it) }
+    }
+
+    private fun bindInternal(viewModel: T) {
         unbind()
         this.viewModel = viewModel
         onBind(viewModel)
