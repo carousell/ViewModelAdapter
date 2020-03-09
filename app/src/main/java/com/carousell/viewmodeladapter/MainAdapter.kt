@@ -26,23 +26,6 @@ class MainAdapter(
         }
     }
 
-    fun t(
-        parent: ViewGroup,
-        viewType: Int
-    ): ViewModelHolder<*> {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        return when (viewType) {
-            TYPE_TEXT -> TextHolder(
-                layoutInflater.inflate(R.layout.adapter_text, parent, false),
-                lifecycleOwner
-            )
-            TYPE_EDIT -> EditHolder(
-                layoutInflater.inflate(R.layout.adapter_edit, parent, false)
-            )
-            else -> throw RuntimeException("Not support")
-        }
-    }
-
     override fun genViewHolder(
         parent: ViewGroup,
         viewType: Int
