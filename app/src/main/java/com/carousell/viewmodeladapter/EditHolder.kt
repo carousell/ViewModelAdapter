@@ -3,7 +3,7 @@ package com.carousell.viewmodeladapter
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import com.carousell.viewmodeladapter.base.ViewModelHolder
+import com.carousell.viewmodel.adapter.ViewModelHolder
 import kotlinx.android.synthetic.main.adapter_edit.view.*
 
 class EditHolder(itemView: View) :
