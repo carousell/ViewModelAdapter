@@ -1,6 +1,8 @@
 package com.carousell.viewmodel.adapter
 
 open class Item(
-    val id: Long,
+    /**
+     * Should be unique in the same list
+     */
     val key: String
 )

@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.add) {
-            list.add(2, MyItem.Text("add new"))
+            list.add(2, MyItem.Edit("add new" + System.currentTimeMillis()))
             adapter.setData(list)
             return true
         }
