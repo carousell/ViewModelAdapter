@@ -1,7 +1,7 @@
 package com.carousell.viewmodeladapter
 
 import androidx.lifecycle.ViewModel
-import com.carousell.viewmodeladapter.base.AutoViewModelProvider
+import com.carousell.viewmodel.adapter.AutoViewModelProvider
 
 class EditViewModel(private var text: String = "") : ViewModel() {
 

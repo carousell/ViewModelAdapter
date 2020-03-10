@@ -1,4 +1,4 @@
-package com.carousell.viewmodeladapter.base
+package com.carousell.viewmodel.adapter
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

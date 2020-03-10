@@ -3,7 +3,7 @@ package com.carousell.viewmodeladapter
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.carousell.viewmodeladapter.base.AutoViewModelProvider
+import com.carousell.viewmodel.adapter.AutoViewModelProvider
 
 open class TextViewModel(text: String = "") : ViewModel() {
     private val liveData = MutableLiveData<String>()

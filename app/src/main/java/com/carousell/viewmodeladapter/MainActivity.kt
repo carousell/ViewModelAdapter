@@ -5,7 +5,6 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.carousell.viewmodeladapter.base.Item
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -14,9 +13,9 @@ class MainActivity : AppCompatActivity() {
 
     private val list = IntRange(0, 10000).map { index ->
         if (index % 2 == 0) {
-            Item.Text("Item $index")
+            MyItem.Text("Item $index")
         } else {
-            Item.Edit("Item $index")
+            MyItem.Edit("Item $index")
         }
     }.toMutableList()
 
@@ -36,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.add) {
-            list.add(2, Item.Text("add new"))
+            list.add(2, MyItem.Text("add new"))
             adapter.setData(list)
             return true
         }

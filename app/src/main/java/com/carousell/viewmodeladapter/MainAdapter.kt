@@ -5,14 +5,13 @@ import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelStoreOwner
-import com.carousell.viewmodeladapter.base.Item
-import com.carousell.viewmodeladapter.base.ViewModelAdapter
-import com.carousell.viewmodeladapter.base.ViewModelHolder
+import com.carousell.viewmodel.adapter.ViewModelAdapter
+import com.carousell.viewmodel.adapter.ViewModelHolder
 
 class MainAdapter(
     private val lifecycleOwner: LifecycleOwner,
     viewModelStoreOwner: ViewModelStoreOwner
-) : ViewModelAdapter<Item>(viewModelStoreOwner) {
+) : ViewModelAdapter<MyItem>(viewModelStoreOwner) {
 
     companion object {
         const val TYPE_TEXT = 0
@@ -21,8 +20,8 @@ class MainAdapter(
 
     override fun getItemViewType(position: Int): Int {
         return when (data[position]) {
-            is Item.Text -> TYPE_TEXT
-            is Item.Edit -> TYPE_EDIT
+            is MyItem.Text -> TYPE_TEXT
+            is MyItem.Edit -> TYPE_EDIT
         }
     }
 
@@ -49,9 +48,9 @@ class MainAdapter(
         else -> throw IllegalArgumentException("View type $viewType is not implemented")
     }
 
-    override fun getViewModelProviderFactory(viewType: Int, item: Item) = when (viewType) {
-        TYPE_TEXT -> TextViewModel.Factory(item.value)
-        TYPE_EDIT -> EditViewModel.Factory(item.value)
+    override fun getViewModelProviderFactory(viewType: Int, item: MyItem) = when (viewType) {
+        TYPE_TEXT -> TextViewModel.Factory(item.key)
+        TYPE_EDIT -> EditViewModel.Factory(item.key)
         else -> throw IllegalArgumentException("View type $viewType is not implemented")
     }
 }
