@@ -9,7 +9,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private val adapter = MainAdapter(this, this)
+    private val adapter by lazy {
+        MainAdapter(this, this.viewModelStore)
+    }
 
     private val list = IntRange(0, 10000).map { index ->
         if (index % 2 == 0) {

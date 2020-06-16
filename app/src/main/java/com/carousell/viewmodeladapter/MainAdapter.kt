@@ -4,14 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelStoreOwner
+import androidx.lifecycle.ViewModelStore
 import com.carousell.viewmodel.adapter.ViewModelAdapter
 import com.carousell.viewmodel.adapter.ViewModelHolder
 
 class MainAdapter(
     private val lifecycleOwner: LifecycleOwner,
-    viewModelStoreOwner: ViewModelStoreOwner
-) : ViewModelAdapter<MyItem>(viewModelStoreOwner) {
+    viewModelStore: ViewModelStore
+) : ViewModelAdapter<MyItem>(viewModelStore) {
 
     companion object {
         const val TYPE_TEXT = 0

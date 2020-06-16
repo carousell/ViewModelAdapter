@@ -2,11 +2,11 @@ package com.carousell.viewmodel.adapter
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelStoreOwner
+import androidx.lifecycle.ViewModelStore
 import androidx.recyclerview.widget.RecyclerView
 
 abstract class ViewModelAdapter<T : Item>(
-    private val viewModelStoreOwner: ViewModelStoreOwner
+    private val viewModelStore: ViewModelStore
 ) : RecyclerView.Adapter<ViewModelHolder<out ViewModel>>() {
 
     private val viewModels = mutableMapOf<Int, ViewModel>()
@@ -42,16 +42,16 @@ abstract class ViewModelAdapter<T : Item>(
         val viewType = getItemViewType(position)
         val viewModelClass = getViewModelClass(viewType)
         val viewModelTag = "${viewModelClass.simpleName}-${item.key}"
-        getViewModelProvider(position).get(viewModelTag, viewModelClass)
+        getViewModelProvider(viewType, position).get(viewModelTag, viewModelClass)
             .also {
                 viewModels[position] = it
             }
     }
 
-    private fun getViewModelProvider(position: Int) =
+    private fun getViewModelProvider(viewType: Int, position: Int) =
         ViewModelProvider(
-            viewModelStoreOwner,
-            getViewModelProviderFactory(getItemViewType(position), data[position])
+            viewModelStore,
+            getViewModelProviderFactory(viewType, data[position])
         )
 
     abstract fun getViewModelClass(viewType: Int): Class<out ViewModel>
