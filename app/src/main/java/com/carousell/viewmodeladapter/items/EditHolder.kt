@@ -1,4 +1,4 @@
-package com.carousell.viewmodeladapter
+package com.carousell.viewmodeladapter.items
 
 import android.text.Editable
 import android.text.TextWatcher
