@@ -4,30 +4,31 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private val adapter by lazy {
-        MainAdapter(this, this.viewModelStore)
-    }
-
-    private val list = IntRange(0, 10000).map { index ->
-        if (index % 2 == 0) {
-            MyItem.Text("Item $index")
-        } else {
-            MyItem.Edit("Item $index")
-        }
-    }.toMutableList()
+    private lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val adapter = MainAdapter(this)
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = adapter
-        adapter.setData(list)
+        swipeRefreshLayout.setOnRefreshListener {
+            viewModel.refresh()
+        }
+        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        viewModel.getLiveData().observe(this, Observer {
+            swipeRefreshLayout.isRefreshing = false
+            adapter.setData(it)
+        })
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -37,8 +38,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.add) {
-            list.add(2, MyItem.Edit("add new" + System.currentTimeMillis()))
-            adapter.setData(list)
+            viewModel.addNewItem()
             return true
         }
         return super.onOptionsItemSelected(item)

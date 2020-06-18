@@ -1,12 +1,14 @@
-package com.carousell.viewmodeladapter
+package com.carousell.viewmodeladapter.items
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.carousell.viewmodel.adapter.AutoViewModelProvider
+import com.carousell.viewmodel.adapter.ItemViewModel
+import com.carousell.viewmodeladapter.MyItem
 
-open class TextViewModel(text: String = "") : ViewModel() {
+open class TextViewModel(item: MyItem.Text) : ItemViewModel(item) {
     private val liveData = MutableLiveData<String>()
+    private val text = item.key
 
     init {
         this.liveData.value = text
@@ -16,10 +18,10 @@ open class TextViewModel(text: String = "") : ViewModel() {
         return liveData
     }
 
-    class Factory(private val text: String = "") :
+    class Factory(private val item: MyItem.Text) :
         AutoViewModelProvider<TextViewModel>() {
         override fun create(): TextViewModel {
-            return TextViewModel(text)
+            return TextViewModel(item)
         }
     }
 }

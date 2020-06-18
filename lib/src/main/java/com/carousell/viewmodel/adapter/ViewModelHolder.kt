@@ -1,16 +1,15 @@
 package com.carousell.viewmodel.adapter
 
 import android.view.View
-import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.RecyclerView
 
-abstract class ViewModelHolder<T : ViewModel>(itemView: View) :
+abstract class ViewModelHolder<T : ItemViewModel>(itemView: View) :
     RecyclerView.ViewHolder(itemView) {
 
     var viewModel: T? = null
 
     @Suppress("UNCHECKED_CAST")
-    fun bind(viewModel: ViewModel) {
+    fun bind(viewModel: ItemViewModel) {
         (viewModel as? T)?.let { bindInternal(it) }
     }
 
