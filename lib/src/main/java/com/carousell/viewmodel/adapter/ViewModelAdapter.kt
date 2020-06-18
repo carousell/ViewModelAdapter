@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 abstract class ViewModelAdapter : RecyclerView.Adapter<ViewModelHolder<out ItemViewModel>>() {
 
-    protected var viewModels = listOf<ItemViewModel>()
+    protected val viewModels = mutableListOf<ItemViewModel>()
 
     override fun getItemCount() = viewModels.size
 
@@ -19,7 +19,8 @@ abstract class ViewModelAdapter : RecyclerView.Adapter<ViewModelHolder<out ItemV
 
     fun setData(viewModels: List<ItemViewModel>) {
         val diffResult = DiffUtil.calculateDiff(ViewModelDiffCallback(viewModels, this.viewModels))
-        this.viewModels = viewModels
+        this.viewModels.clear()
+        this.viewModels.addAll(viewModels)
         diffResult.dispatchUpdatesTo(this)
     }
 
