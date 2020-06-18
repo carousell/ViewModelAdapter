@@ -8,7 +8,7 @@ import com.carousell.viewmodeladapter.MyItem
 
 open class TextViewModel(item: MyItem.Text) : ItemViewModel(item) {
     private val liveData = MutableLiveData<String>()
-    private val text = item.key
+    private val text = item.data
 
     init {
         this.liveData.value = text

@@ -2,9 +2,7 @@ package com.carousell.viewmodeladapter
 
 import com.carousell.viewmodel.adapter.Item
 
-sealed class MyItem(
-    key: String
-) : Item(key) {
-    class Text(key: String) : MyItem(key)
-    class Edit(key: String) : MyItem(key)
+class MyItem {
+    class Text(key: String, val data: String) : Item(key)
+    class Edit(key: String, val data: String) : Item(key)
 }
