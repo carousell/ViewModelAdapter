@@ -5,7 +5,7 @@ import com.carousell.viewmodel.adapter.ItemViewModel
 import com.carousell.viewmodeladapter.MyItem
 
 class EditViewModel(item: MyItem.Edit) : ItemViewModel(item) {
-    private var text = item.key
+    private var text = item.data
 
     fun getValue(): String {
         return text

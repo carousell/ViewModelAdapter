@@ -24,23 +24,24 @@ class MainViewModel : ViewModel() {
         generateViewModels(getData())
     }
 
-    private fun getData(): MutableList<MyItem> {
+    // Generate data
+    private fun getData(): MutableList<Item> {
         return IntRange(0, 10000).map { index ->
             if (index % 2 == 0) {
-                MyItem.Text("Item $index")
+                MyItem.Text(index.toString(), "Item $index")
             } else {
-                MyItem.Edit("Item $index")
+                MyItem.Edit(index.toString(), "Item $index")
             }
         }.toMutableList()
     }
 
-    private fun generateViewModels(list: List<MyItem>) {
+    private fun generateViewModels(list: List<Item>) {
         liveData.value = list.map {
             generateViewModel(it)
         }
     }
 
-    private fun generateViewModel(item: MyItem): ItemViewModel {
+    private fun generateViewModel(item: Item): ItemViewModel {
         return ViewModelProvider(
             itemViewModelStore,
             getFactory(item)
@@ -60,7 +61,10 @@ class MainViewModel : ViewModel() {
     }
 
     fun addNewItem() {
-        val item = MyItem.Edit("add new" + System.currentTimeMillis())
+        val item = MyItem.Edit(
+            System.currentTimeMillis().toString(),
+            "add new" + System.currentTimeMillis()
+        )
         val list = liveData.value?.toMutableList()
         list?.add(2, generateViewModel(item))
         liveData.value = list
