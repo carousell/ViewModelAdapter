@@ -13,7 +13,7 @@ import com.carousell.viewmodeladapter.items.TextViewModel
 
 class MainAdapter(
     private val lifecycleOwner: LifecycleOwner
-) : ViewModelAdapter() {
+) : ViewModelAdapter(ItemViewModel.ItemDiffCallback()) {
 
     companion object {
         const val TYPE_TEXT = 1
@@ -21,7 +21,7 @@ class MainAdapter(
     }
 
     override fun getItemViewType(position: Int): Int {
-        return when (viewModels[position]) {
+        return when (getItem(position)) {
             is TextViewModel -> TYPE_TEXT
             is EditViewModel -> TYPE_EDIT
             else -> throw RuntimeException("Not support")
