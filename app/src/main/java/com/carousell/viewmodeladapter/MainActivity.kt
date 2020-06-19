@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         viewModel.getLiveData().observe(this, Observer {
             swipeRefreshLayout.isRefreshing = false
-            adapter.setData(it)
+            adapter.submitList(it)
         })
 
     }

@@ -1,8 +1,15 @@
 package com.carousell.viewmodeladapter
 
-import com.carousell.viewmodel.adapter.Item
+sealed class MyItem(
+    open val key: String
+)
 
-class MyItem {
-    class Text(key: String, val data: String) : Item(key)
-    class Edit(key: String, val data: String) : Item(key)
-}
+data class TextItem(
+    override val key: String,
+    val data: String
+) : MyItem(key)
+
+data class EditItem(
+    override val key: String,
+    val data: String
+) : MyItem(key)
