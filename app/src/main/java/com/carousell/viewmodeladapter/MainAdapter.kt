@@ -13,7 +13,7 @@ import com.carousell.viewmodeladapter.items.TextViewModel
 
 class MainAdapter(
     private val lifecycleOwner: LifecycleOwner
-) : ViewModelAdapter(ItemViewModel.ItemDiffCallback()) {
+) : ViewModelAdapter() {
 
     companion object {
         const val TYPE_TEXT = 1
