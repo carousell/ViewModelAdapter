@@ -4,21 +4,21 @@ import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.DiffUtil
 
 /**
- * ViewModel which will used to interact with ViewModelHolder
+ * ViewModel which will be used to interact with ViewModelHolder
  */
 abstract class ItemViewModel : ViewModel() {
     /**
-     * Unique key to identify ViewModel, will be used in ItemDiffCallback
+     * Unique key to identify ViewModel. Will be used in ItemDiffCallback
      */
     abstract fun getKey(): String
 
     /**
-     * Check whether two ViewModel has same content for not, will be used in ItemDiffCallback
+     * Check whether two ViewModels have the same content. Will be used in ItemDiffCallback
      */
     abstract fun compare(viewModel: ItemViewModel): Boolean
 
     /**
-     * Default implementation of DiffUtil.ItemCallback for ItemViewModel, can be override if you have custom logic
+     * Default implementation of DiffUtil.ItemCallback for ItemViewModel, can be overridden to implement custom logic
      */
     class ItemDiffCallback : DiffUtil.ItemCallback<ItemViewModel>() {
         override fun areItemsTheSame(oldItem: ItemViewModel, newItem: ItemViewModel): Boolean {

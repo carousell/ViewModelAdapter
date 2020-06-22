@@ -4,13 +4,13 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
 /**
- * Base ViewHolder for ViewModelAdapter, will bind or unbind with related ItemViewModel when screen scroll
+ * Base ViewHolder for ViewModelAdapter, will bind and unbind the related ItemViewModel when the screen is scrolled
  */
 abstract class ViewModelHolder<T : ItemViewModel>(itemView: View) :
     RecyclerView.ViewHolder(itemView) {
 
     /**
-     * The ViewModel which ViewModelHolder bind to currently
+     * The ViewModel currently bound to this ViewModelHolder
      */
     var viewModel: T? = null
 
@@ -41,12 +41,14 @@ abstract class ViewModelHolder<T : ItemViewModel>(itemView: View) :
     }
 
     /**
-     * Callback of bind event, with ViewModel its currently bind with
+     * Callback of bind event
+     * @param viewModel ViewModel currently bound to this ViewModelHolder
      */
     abstract fun onBind(viewModel: T)
 
     /**
-     * Callback of unbind event, with ViewModel which will no-longer bind with
+     * Callback of unbind event
+     * @param viewModel ViewModel which will no longer be bound to this ViewModelHolder
      */
     abstract fun onUnbind(viewModel: T)
 }

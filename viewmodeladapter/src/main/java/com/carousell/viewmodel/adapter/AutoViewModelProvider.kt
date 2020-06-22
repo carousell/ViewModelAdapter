@@ -4,13 +4,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
 /**
- * AutoViewModelProvider is a factory class help to create ViewModel for you.
+ * AutoViewModelProvider is a factory which helps to create ViewModels for you.
  */
 abstract class AutoViewModelProvider<V : ViewModel> :
     ViewModelProvider.Factory {
 
     /**
-     * Abstract method where should be the place for ViewModel to created
+     * Abstract method which creates a new ViewModel instance
      */
     abstract fun create(): V
 
