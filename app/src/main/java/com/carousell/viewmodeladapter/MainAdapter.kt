@@ -21,7 +21,7 @@ class MainAdapter(
     }
 
     override fun getItemViewType(position: Int): Int {
-        return when (viewModels[position]) {
+        return when (getItem(position)) {
             is TextViewModel -> TYPE_TEXT
             is EditViewModel -> TYPE_EDIT
             else -> throw RuntimeException("Not support")
