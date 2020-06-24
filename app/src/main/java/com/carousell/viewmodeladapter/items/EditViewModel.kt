@@ -1,6 +1,7 @@
 package com.carousell.viewmodeladapter.items
 
-import com.carousell.viewmodel.adapter.AutoViewModelProvider
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.carousell.viewmodel.adapter.ItemViewModel
 import com.carousell.viewmodeladapter.EditItem
 
@@ -27,9 +28,11 @@ class EditViewModel(private val item: EditItem) : ItemViewModel() {
     }
 
     class Factory(private val item: EditItem) :
-        AutoViewModelProvider<EditViewModel>() {
-        override fun create(): EditViewModel {
-            return EditViewModel(item)
+        ViewModelProvider.Factory {
+        
+        @Suppress("UNCHECKED_CAST")
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            return EditViewModel(item) as T
         }
     }
 }
