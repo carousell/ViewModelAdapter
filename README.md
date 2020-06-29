@@ -16,3 +16,20 @@ implementation 'com.github.carousell:viewmodeladapter:0.1'
 3. Create your `Adapter` extends `ViewModelAdapter` which will handle the `ViewModel` binding for you.
 
 See `./app` module for more information.
+
+## Contributing
+
+Thank you for being interested in contributing to this project. Check out the [CONTRIBUTING](https://github.com/carousell/ViewModelAdapter/blob/master/CONTRIBUTING.md) document for more info.
+
+## About
+
+<a href="https://github.com/carousell/" target="_blank"><img src="https://avatars2.githubusercontent.com/u/3833591" width="100px" alt="Carousell" align="right"/></a>
+
+**ViewModelAdapter** is created and maintained by [Carousell](https://carousell.com/). Help us improve this project! We'd love the [feedback](https://github.com/carousell/ViewModelAdapter/issues) from you.
+
+We're hiring! Find out more at <http://careers.carousell.com/>
+
+## License
+
+**ViewModelAdapter** is released under Apache License 2.0.
+See [LICENSE](https://github.com/carousell/ViewModelAdapter/blob/master/LICENSE) for more details.
