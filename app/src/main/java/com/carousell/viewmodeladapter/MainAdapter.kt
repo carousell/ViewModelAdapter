@@ -21,14 +21,13 @@ class MainAdapter(
     ): ViewModelHolder<out ItemViewModel> {
         val layoutInflater = LayoutInflater.from(parent.context)
         return when (modelType) {
-            EditViewModel::class.java -> EditHolder(
-                layoutInflater.inflate(R.layout.adapter_edit, parent, false)
-            )
             TextViewModel::class.java -> TextHolder(
                 layoutInflater.inflate(R.layout.adapter_text, parent, false),
                 lifecycleOwner
             )
-
+            EditViewModel::class.java -> EditHolder(
+                layoutInflater.inflate(R.layout.adapter_edit, parent, false)
+            )
             else -> throw RuntimeException("Not support")
         }
     }
