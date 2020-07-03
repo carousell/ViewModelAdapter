@@ -9,11 +9,16 @@ With setup of Jitpack first, than add dependency in your build.gradle
 implementation 'com.github.carousell:viewmodeladapter:0.1'
 ```
 
+## Concept
+
+We want to make `Activity`/`Fragment` to be pure container and delegate the functionality to elements inside `RecyclerView` to fulfill clean and scaleable architecture.
+We use ViewModel as the data source of RecyclerView, and generate corresponding ViewHolder/View that will bind with the ViewModel and observe change or execute actions.
+
 ## Usage
 
-1. Create list of `ViewModel` classes extends `ItemViewModel` to represent different type of item you want to display on RecyclerView.
-2. Create list of `ViewHolder` classes extends `ViewModelHolder` to interact with your `ItemViewModel`.
-3. Create your `Adapter` extends `ViewModelAdapter` which will handle the `ViewModel` binding for you.
+1. Create list of `ViewModel` classes extends `ItemViewModel` to represent different type of item you want to display on `RecyclerView`.
+2. Create list of `ViewHolder` classes extends `ViewModelHolder` to interact with your corresponding `ViewModel`.
+3. Create adapter extends `ViewModelAdapter` which will handle the `ViewModel` binding for you.
 
 See `./app` module for more information.
 

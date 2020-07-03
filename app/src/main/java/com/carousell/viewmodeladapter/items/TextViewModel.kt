@@ -32,7 +32,7 @@ open class TextViewModel(private val item: TextItem) : ItemViewModel() {
 
     class Factory(private val item: TextItem) :
         ViewModelProvider.Factory {
-        
+
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             return TextViewModel(item) as T
