@@ -23,7 +23,7 @@ abstract class ViewModelAdapter(callback: DiffUtil.ItemCallback<ItemViewModel> =
 
     final override fun getItemViewType(position: Int): Int {
         val clz = getItem(position).javaClass
-        
+
         return modelTypeMapping[clz] ?: run {
             val index = modelTypeMapping.size
             modelTypeMapping[clz] = index
