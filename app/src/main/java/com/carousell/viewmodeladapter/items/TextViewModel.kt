@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.carousell.viewmodel.adapter.ItemViewModel
 import com.carousell.viewmodeladapter.TextItem
 
-open class TextViewModel(private val item: TextItem) : ItemViewModel() {
+class TextViewModel(private val item: TextItem) : ItemViewModel() {
     private val liveData = MutableLiveData<String>()
     private val text = item.data
 
