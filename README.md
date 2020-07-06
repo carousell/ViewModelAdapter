@@ -17,10 +17,10 @@ We use ViewModel as the data source of RecyclerView, and generate corresponding 
 ## Usage & Example
 
 1. Create list of `ViewModel` classes extends `ItemViewModel` to represent different type of item you want to display on `RecyclerView`.
-  There are two method need to implement:
-  - getKey: Provide unique key to differentiate which will used in areItemsTheSame in DiffUtil.
-  - compare: Compare different ViewModel and return if them are identical.
-  Example:
+    There are two method need to implement:
+    - getKey: Provide unique key to differentiate which will used in areItemsTheSame in DiffUtil.
+    - compare: Compare different ViewModel and return if them are identical.
+    Example:
   ```kotlin
   class TextViewModel(private val item: TextItem) : ItemViewModel() {
 
@@ -37,10 +37,10 @@ We use ViewModel as the data source of RecyclerView, and generate corresponding 
   }
   ```
 2. Create list of `ViewHolder` classes extends `ViewModelHolder` to interact with your corresponding `ViewModel`.
-  There are two method need to implement:
-  - onBind: Observe to any live data or other components when ViewHolder is bind to new ViewModel.
-  - onUnbind: Unsubscribe to any live data or other components when ViewHolder is unbind to existing ViewModel.
-  Example:
+    There are two method need to implement:
+    - onBind: Observe to any live data or other components when ViewHolder is bind to new ViewModel.
+    - onUnbind: Unsubscribe to any live data or other components when ViewHolder is unbind to existing ViewModel.
+    Example:
   ```kotlin
   class TextHolder(itemView: View, private val lifecycleOwner: LifecycleOwner) :
       ViewModelHolder<TextViewModel>(itemView), Observer<String> {
@@ -59,9 +59,9 @@ We use ViewModel as the data source of RecyclerView, and generate corresponding 
   }
   ```
 3. Create adapter extends `ViewModelAdapter` which will handle the `ViewModel` binding for you.
-  The only method need to implement:
-  - onCreateViewHolder: Create the corresponding ItemViewModel via different modelType.
-  Example:  
+    The only method need to implement:
+    - onCreateViewHolder: Create the corresponding ItemViewModel via different modelType.
+    Example:  
   ```kotlin
     override fun onCreateViewHolder(
         parent: ViewGroup,
