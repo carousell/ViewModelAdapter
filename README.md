@@ -17,10 +17,12 @@ We use ViewModel as the data source of RecyclerView, and generate corresponding 
 ## Usage & Example
 
 1. Create list of `ViewModel` classes extends `ItemViewModel` to represent different type of item you want to display on `RecyclerView`.
-    There are two method need to implement:
+    
+  There are two method need to implement:
     - getKey: Provide unique key to differentiate which will used in areItemsTheSame in DiffUtil.
     - compare: Compare different ViewModel and return if them are identical.
-    Example:
+    
+  Example:
   ```kotlin
   class TextViewModel(private val item: TextItem) : ItemViewModel() {
 
