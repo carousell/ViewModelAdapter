@@ -16,8 +16,8 @@ We use ViewModel as the data source of RecyclerView, and generate corresponding 
 
 ## Usage & Example
 
-- Create list of `ViewModel` classes extends `ItemViewModel` to represent different type of item you want to display on `RecyclerView`. There are two method need to implement:
-  - getKey: Provide unique key to differentiate which will used in `areItemsTheSame` in `DiffUtil`.
+- Create a list of `ViewModels` that extends `ItemViewModel` that represent the different items that will be displayed into the `RecyclerView`. The following methods should be implemented:
+  - getKey: Provide a unique key to the ViewModel.
   - compare: Compare different `ViewModel` and return if they are identical.
     
   Example:
@@ -36,10 +36,9 @@ We use ViewModel as the data source of RecyclerView, and generate corresponding 
       }
   }
   ```
-- Create list of `ViewHolder` classes extends `ViewModelHolder` to interact with your corresponding `ViewModel`.
-  There are two method need to implement:
-  - onBind: Observe to any `LiveData` or other components when `ViewHolder` is bind to new `ViewModel`.
-  - onUnbind: Unsubscribe to any `LiveData` or other components when `ViewHolder` is unbind to existing `ViewModel`.
+- Create a list of `ViewHolders` that extends `ViewModelHolder` to interact with your corresponding `ViewModel`. The following methods should be implemented:
+  - onBind: Subscribe to the data sources (LiveData, RxJava, etc) provided by your ViewModel.
+  - onUnbind: Unsubscribe to the data sources (LiveData, RxJava, etc) provided by your ViewModel.
   
   Example:
   ```kotlin
