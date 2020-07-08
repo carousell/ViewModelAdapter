@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.carousell.viewmodel.adapter.ItemViewModel
 import com.carousell.viewmodeladapter.TextItem
 
-open class TextViewModel(private val item: TextItem) : ItemViewModel() {
+class TextViewModel(private val item: TextItem) : ItemViewModel() {
     private val liveData = MutableLiveData<String>()
     private val text = item.data
 
@@ -32,7 +32,7 @@ open class TextViewModel(private val item: TextItem) : ItemViewModel() {
 
     class Factory(private val item: TextItem) :
         ViewModelProvider.Factory {
-        
+
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             return TextViewModel(item) as T

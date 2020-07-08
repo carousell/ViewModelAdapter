@@ -4,7 +4,6 @@ import android.view.View
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import com.carousell.viewmodel.adapter.ViewModelHolder
-import com.carousell.viewmodeladapter.items.TextViewModel
 import kotlinx.android.synthetic.main.adapter_text.view.*
 
 class TextHolder(itemView: View, private val lifecycleOwner: LifecycleOwner) :

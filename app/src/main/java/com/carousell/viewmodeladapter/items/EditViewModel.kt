@@ -29,7 +29,7 @@ class EditViewModel(private val item: EditItem) : ItemViewModel() {
 
     class Factory(private val item: EditItem) :
         ViewModelProvider.Factory {
-        
+
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             return EditViewModel(item) as T
