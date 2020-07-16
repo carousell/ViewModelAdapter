@@ -1,5 +1,7 @@
 # ViewModelAdapter
 
+[![CircleCI](https://circleci.com/gh/carousell/ViewModelAdapter.svg?style=svg)](https://circleci.com/gh/carousell/ViewModelAdapter)
+
 ViewModelAdapter is a project that apply MVVM pattern for RecyclerView.Adapter in Android.
 
 ## Install
@@ -19,7 +21,7 @@ We use ViewModel as the data source of RecyclerView, and generate corresponding 
 - Create a list of `ViewModels` that extends `ItemViewModel` that represent the different items that will be displayed into the `RecyclerView`. The following methods should be implemented:
   - getKey: Provide a unique key to the ViewModel.
   - compare: Compare different `ViewModel` and return if they are identical.
-    
+
   Example:
   ```kotlin
   class TextViewModel(private val item: TextItem) : ItemViewModel() {
@@ -27,7 +29,7 @@ We use ViewModel as the data source of RecyclerView, and generate corresponding 
       override fun getKey(): String {
           return item.key
       }
-  
+
       override fun compare(viewModel: ItemViewModel): Boolean {
           if (viewModel is TextViewModel) {
               return viewModel.text == text
@@ -39,20 +41,20 @@ We use ViewModel as the data source of RecyclerView, and generate corresponding 
 - Create a list of `ViewHolders` that extends `ViewModelHolder` to interact with your corresponding `ViewModel`. The following methods should be implemented:
   - onBind: Subscribe to the data sources (LiveData, RxJava, etc) provided by your ViewModel.
   - onUnbind: Unsubscribe to the data sources (LiveData, RxJava, etc) provided by your ViewModel.
-  
+
   Example:
   ```kotlin
   class TextHolder(itemView: View, private val lifecycleOwner: LifecycleOwner) :
       ViewModelHolder<TextViewModel>(itemView), Observer<String> {
-  
+
       override fun onBind(viewModel: TextViewModel) {
           viewModel.liveData().observe(lifecycleOwner, this)
       }
-  
+
       override fun onUnbind(viewModel: TextViewModel) {
           viewModel.liveData().removeObserver(this)
       }
-  
+
       override fun onChanged(string: String?) {
           itemView.text.text = string
       }
@@ -61,7 +63,7 @@ We use ViewModel as the data source of RecyclerView, and generate corresponding 
 - Create adapter extends `ViewModelAdapter` which will handle the `ViewModel` binding for you.
   The only method need to implement:
   - onCreateViewHolder: Create the corresponding `ItemViewModel` via different modelType.
-    
+
   Example:  
   ```kotlin
     override fun onCreateViewHolder(
