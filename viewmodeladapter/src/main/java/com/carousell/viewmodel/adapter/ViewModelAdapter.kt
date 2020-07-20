@@ -10,7 +10,14 @@ import androidx.recyclerview.widget.ListAdapter
 abstract class ViewModelAdapter(callback: DiffUtil.ItemCallback<ItemViewModel> = ItemViewModel.ItemDiffCallback()) :
     ListAdapter<ItemViewModel, ViewModelHolder<out ItemViewModel>>(callback) {
 
+    /**
+     * Mapping model class into int ViewType
+     */
     private val modelTypeMapping = mutableMapOf<Class<out ItemViewModel>, Int>()
+
+    /**
+     * Mapping int ViewType into model class
+     */
     private val typeModelMapping = mutableMapOf<Int, Class<out ItemViewModel>>()
 
     override fun onBindViewHolder(holder: ViewModelHolder<out ItemViewModel>, position: Int) {
@@ -41,6 +48,9 @@ abstract class ViewModelAdapter(callback: DiffUtil.ItemCallback<ItemViewModel> =
         } ?: throw RuntimeException("No support onCreateViewHolder")
     }
 
+    /**
+     * Create ViewHolder by corresponding ItemViewModel class
+     */
     abstract fun onCreateViewHolder(
         parent: ViewGroup,
         modelType: Class<out ItemViewModel>

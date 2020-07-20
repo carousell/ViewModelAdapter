@@ -4,7 +4,6 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.github.dcendents.android-maven'
 
 group = 'com.github.carousell'
-version = '0.1'
 
 android {
     compileSdkVersion 29

@@ -1,6 +1,7 @@
 # ViewModelAdapter
 
 [![CircleCI](https://circleci.com/gh/carousell/ViewModelAdapter.svg?style=svg)](https://circleci.com/gh/carousell/ViewModelAdapter)
+[![jitpack](https://jitpack.io/v/carousell/ViewModelAdapter.svg)](https://jitpack.io/#carousell/ViewModelAdapter)
 
 ViewModelAdapter is a project that apply MVVM pattern for RecyclerView.Adapter in Android.
 
