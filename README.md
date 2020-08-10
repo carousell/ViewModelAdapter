@@ -9,7 +9,7 @@ ViewModelAdapter is a project that apply MVVM pattern for RecyclerView.Adapter i
 
 With setup of Jitpack first, than add dependency in your build.gradle
 ```groovy
-implementation 'com.github.carousell:viewmodeladapter:0.2'
+implementation 'com.github.carousell:ViewModelAdapter:0.2'
 ```
 
 ## Concept
