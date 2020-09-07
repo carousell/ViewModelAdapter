@@ -15,7 +15,6 @@ class EditHolder(itemView: View) :
     }
 
     override fun onUnbind(viewModel: EditViewModel) {
-        itemView.edit.addTextChangedListener(null)
     }
 
     override fun afterTextChanged(p0: Editable?) {
